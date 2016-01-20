@@ -30,6 +30,11 @@
 //    self.myTableView.preservesSuperviewLayoutMargins = NO;
 //    self.myTableView.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
 
+    // 分割线设置毛玻璃效果(iOS8以后使用)
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVibrancyEffect *vibrancyEffect = [UIVibrancyEffect effectForBlurEffect:blurEffect];
+    self.myTableView.separatorEffect = vibrancyEffect;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,6 +63,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    // 设置分割线顶格的问题
     // Remove seperator inset
     if([cell respondsToSelector:@selector(setSeparatorInset:)]){
         [cell setSeparatorInset:UIEdgeInsetsMake(0, 0, 0, 0)];
